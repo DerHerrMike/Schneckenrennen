@@ -2,27 +2,25 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Rennen {
-    String name;
-    String rasse;
-    float speed;
-    String farbe;
-
-
-    private static float distance = 20.0f;
+    private String name;
+    private String rasse;
+    private float speed;
+    private String farbe;
+    private float distanzRennen;
     private ArrayList<Schnecke> teilnehmer = new ArrayList<>();
+
 
     //METHODEN
 
-    // Funktionier noch nicht
-//    public ArrayList<Schnecke> getTeilnehmer() {
-//        for(int i=0;i<this.teilnehmer.size();i++) {
-//          teilnehmerZaehler = teilnehmer.get(i).toString();
-//        return teilnehmer.get(i).toString();
-//    }
-    public void kriechen() {
-        for (int i = 0; i < this.teilnehmer.size(); i++) {
-            teilnehmer.get(i).kriechen();
-        }
+
+    public void setDistanzRennen() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Länge des Rennens in mm: ");
+        distanzRennen = scanner.nextFloat();
+    }
+
+    public float getDistanzRennen() {
+        return distanzRennen;
     }
 
     public void addteilnehmer() {
@@ -34,9 +32,9 @@ public class Rennen {
 
             System.out.println("Teilnehmende Gehäuseschnecken instanziieren");
             rasse = "Gehäuseschnecke";
-            getTeilnehmerName();
-            getTeilnehmerFarbe();
-            getSpeed();
+            setTeilnehmerName();
+            setTeilnehmerFarbe(); // zum testen aus
+            setTeilnehmerSpeed();
             teilnehmer.add(new Gehaeuseschnecke(name, rasse, speed, farbe));
         }
 
@@ -46,49 +44,89 @@ public class Rennen {
 
             System.out.println("Teilnehmende Nacktschnecken instanziieren");
             rasse = "Nacktschnecke";
-            getTeilnehmerName();
-            getTeilnehmerFarbe();
-            getSpeed();
+            setTeilnehmerName();
+            setTeilnehmerSpeed();
             teilnehmer.add(new Nacktschnecke(name, rasse, speed));
         }
     }
 
-    public String getTeilnehmerName() {
+    public String setTeilnehmerName() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Name: ");
         name = scanner.nextLine();
         return name;
     }
 
-    public String getTeilnehmerFarbe() {
+    public String setTeilnehmerFarbe() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Farbe: ");
         farbe = scanner.nextLine();
         return farbe;
     }
 
-    public float getSpeed() {
+
+    public float setTeilnehmerSpeed() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Geschwingdigkeit: ");
         speed = scanner.nextFloat();
         return speed;
     }
 
-    public Schnecke getTeilnehmer(int startnummer) {
+//    public float getTeilnehmerSpeed(){
+//        return speed;
+//    }
+
+    public Schnecke getTeilnehmerDaten(int startnummer) {
         return teilnehmer.get(startnummer);
     }
+//    public void bewegung() {
+//        for (int i = 0; i < this.teilnehmer.size(); i++) {
+//            teilnehmer.get(i).kriechen();
+//        }
+//    }
 
+//    public void theRace() {
+//        int az = teilnehmer.size();  // getestet passt
+//        for (float i = 0; i < az; i++) {
+//            for (int j = 0; j < this.teilnehmer.size(); j++) {
+//                teilnehmer.get(j).kriechen();
+//            }
+//            float zurueckgelegteDistanz = teilnehmer.get((int) i).getZurueckgelegteDistanz(); // getestet passt
+//            if (getDistanzRennen() <= zurueckgelegteDistanz) {
+//                displayWinner((int) i);
+//            }else return;
+//            }
+//        }
 
-    public static void main(String[] args) {
+    public void theRace() {
 
-        Rennen test = new Rennen();
-        test.addteilnehmer();
-        test.kriechen();
-        System.out.println(test.getTeilnehmer(0));
-        System.out.println(test.getTeilnehmer(1));
-
+        boolean found = false;
+        do {
+            for (Schnecke schnecke : teilnehmer) {
+                schnecke.kriechen();
+            }
+            for (Schnecke schnecke : teilnehmer) {
+                float zurueckgelegteDistanz = schnecke.getZurueckgelegteDistanz(); // getestet passt
+                if (getDistanzRennen() >= zurueckgelegteDistanz) {
+                    displayWinner(schnecke);
+                    found = true;
+                }
+            }
+        } while (!found);
     }
-}
+
+        public void displayWinner (Schnecke schnecke){
+            System.out.println("Sieger: " + schnecke.getName());
+        }
+
+        public static void main (String[]args){
+
+            Rennen test = new Rennen();
+            test.setDistanzRennen();
+            test.addteilnehmer();
+            test.theRace();
+        }
+    }
 
 
 
