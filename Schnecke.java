@@ -8,7 +8,7 @@ public abstract class Schnecke {
     protected float zurueckgelegteDistanz;
 
     // Konstruktor
-    public Schnecke(String name, String rasse, float speed, float zurueckgelegteDistanz) {
+    public Schnecke(String name, String rasse, float speed) {
         this.name = name;
         this.rasse = rasse;
         this.speed = speed;// Speed wird bei der Instantzierung eingegeben.
@@ -19,7 +19,6 @@ public abstract class Schnecke {
     public String toString() {
         return rasse + " " + name + "ist mit" + speed +"mm/s unterwegs";
     }
-
 
     public String getName() {
         return name;

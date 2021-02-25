@@ -5,9 +5,8 @@ public class Gehaeuseschnecke extends Schnecke {
 
 
 // Konstruktor + Konstruktor der Elternklasse
-
-    public Gehaeuseschnecke(String name, String rasse, float speed, float zurueckgelegteDistanz, String gehaeuseFarbe) {
-        super(name,rasse,speed,zurueckgelegteDistanz);
+    public Gehaeuseschnecke(String name, String rasse, float speed, String gehaeuseFarbe) {
+        super(name,rasse,speed);
         this.gehaeuseFarbe = gehaeuseFarbe;
     }
 
@@ -24,11 +23,11 @@ public class Gehaeuseschnecke extends Schnecke {
     }
 
     public String toString() {
-        return "Schnecke "+getName()+" ("+getRasse()+", "+getSpeed()+") hat bereits "+zurueckgelegteDistanz+ " zurückgelegt";
+        return "" + getRasse() +" "+ getName()+ " hat bereits "+zurueckgelegteDistanz+ " zurückgelegt";
     }
 
     public float getZurueckgelegteDistanz(){
-        return this.zurueckgelegteDistanz;
+        return zurueckgelegteDistanz;
     }
 
 
