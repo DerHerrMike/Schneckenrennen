@@ -14,12 +14,12 @@ public class Rennen {
 
     Scanner scanner = new Scanner(System.in);
 
-    //Konstruktor eines Rennens
+    //Konstruktor Rennen
     public Rennen(float distanz) {
         Rennen.distanz = distanz;
     }
 
-
+    // Methoden
     public void addSchnecken() {
 
         System.out.println("Wie viele Nacktschnecken sollen teilnehmen?");
@@ -53,7 +53,7 @@ public class Rennen {
     }
 
     private float readSpeed() {
-        boolean success =  false;
+        boolean success = false;
         while (!success) {
             try {
                 return scanner.nextFloat();
@@ -69,12 +69,13 @@ public class Rennen {
         boolean gewonnen = false;
         while (!gewonnen) {
 
-            for (Schnecke schnecke : teilnehmer) {
+            for (int i = 0, teilnehmerSize = teilnehmer.size(); i < teilnehmerSize; i++) {
+                Schnecke schnecke = teilnehmer.get(i);
                 schnecke.kriechen();
                 float zurueckgelegteDistanz = schnecke.getZurueckgelegteDistanz();
                 if (zurueckgelegteDistanz >= distanz) {
                     gewonnen = true;
-                    System.out.println("Gewonnen hat " + schnecke);
+                    System.out.println("Gewinner " + schnecke);
                     break;
                 }
             }
@@ -87,23 +88,9 @@ public class Rennen {
         }
     }
 
-    private String toString(int schnecke) {
-        return "Rennen{" +
-                "distanz=" + distanz +
-                ", teilnehmer=" + teilnehmer +
-                '}';
-    }
-
-    private void displayWinner(String toString) {
-        System.out.println("Gewonnen hat " + teilnehmer.indexOf(1));
-    }
-
-    public float getDistanz() {
-        return distanz;
-    }
-
 
     public static void main(String[] args) {
+
 
         System.out.println("Distanz des Rennens in mm festlegen: ");
         Scanner scanner1 = new Scanner(System.in);
