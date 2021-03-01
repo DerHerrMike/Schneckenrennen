@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class Rennen {
 
-
     private static float distanz;
 
     private final List<Schnecke> teilnehmer = new ArrayList<>();
@@ -31,17 +30,20 @@ public class Rennen {
     }
 
     private void addNacktschnecken(int anzahl) {
-        for (int i = 0; i < anzahl; ++i) {
+        int i = 0;
+        while (i < anzahl) {
             System.out.println("Bitte den Namen der Nacktschnecke eingeben:");
             String name = scanner.next();
             System.out.println("Bitte speed eingeben: ");
             float speed = readSpeed();
             teilnehmer.add(new Nacktschnecke(name, speed));
+            ++i;
         }
     }
 
     private void addGehaueseschnecken(int anzahl) {
-        for (int i = 0; i < anzahl; ++i) {
+        int i = 0;
+        while (i < anzahl) {
             System.out.println("Bitte den Namen der Gehäuseschnecke eingeben:");
             String name = scanner.next();
             System.out.println("Bitte speed eingeben: ");
@@ -49,6 +51,7 @@ public class Rennen {
             System.out.println("Farbe: ");
             String farbe = scanner.next();
             teilnehmer.add(new Gehaeuseschnecke(name, speed, farbe));
+            ++i;
         }
     }
 
@@ -69,8 +72,7 @@ public class Rennen {
         boolean gewonnen = false;
         while (!gewonnen) {
 
-            for (int i = 0, teilnehmerSize = teilnehmer.size(); i < teilnehmerSize; i++) {
-                Schnecke schnecke = teilnehmer.get(i);
+            for (Schnecke schnecke : teilnehmer) {
                 schnecke.kriechen();
                 float zurueckgelegteDistanz = schnecke.getZurueckgelegteDistanz();
                 if (zurueckgelegteDistanz >= distanz) {
@@ -88,9 +90,7 @@ public class Rennen {
         }
     }
 
-
     public static void main(String[] args) {
-
 
         System.out.println("Distanz des Rennens in mm festlegen: ");
         Scanner scanner1 = new Scanner(System.in);
