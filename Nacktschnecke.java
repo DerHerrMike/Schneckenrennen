@@ -1,20 +1,22 @@
-public class Nacktschnecke extends Schnecke{
+public class Nacktschnecke extends Schnecke {
+
 
     // Konstruktor plus ElternKonstruktor
-    public Nacktschnecke(String name, String rasse, float speed){ //float zurueckgelegteDistanz //) {
-        super(name, rasse, speed); //zurueckgelegteDistanz);
+
+
+    public Nacktschnecke(String name, float speed) {
+        super( name, speed);
     }
 
-    @Override // Geerbete Methode //
+    @Override
     public void kriechen() {
-        this.zurueckgelegteDistanz = zurueckgelegteDistanz+getSpeed();
+        zurueckgelegteDistanz = zurueckgelegteDistanz + getSpeed();
+        System.out.printf("Nacktschnecke %s ist bei %f mm\n", getName(), getZurueckgelegteDistanz());
     }
 
-    public String toString() {
-        return "" + getRasse() +" "+ getName()+ " hat bereits "+zurueckgelegteDistanz+ " zurückgelegt";
-    }
 
-    public float getZurueckgelegteDistanz(){
+    public float getZurueckgelegteDistanz() {
         return zurueckgelegteDistanz;
     }
+
 }

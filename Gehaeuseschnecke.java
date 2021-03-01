@@ -5,32 +5,23 @@ public class Gehaeuseschnecke extends Schnecke {
 
 
 // Konstruktor + Konstruktor der Elternklasse
-    public Gehaeuseschnecke(String name, String rasse, float speed, String gehaeuseFarbe) {
-        super(name,rasse,speed);
+
+    public Gehaeuseschnecke(String name, float speed, String gehaeuseFarbe) {
+        super(name, speed);
         this.gehaeuseFarbe = gehaeuseFarbe;
     }
 
+
     // EIGENE METHODEN DER KLASSE //
-
-
     public String getGehaeuseFarbe() {
         return gehaeuseFarbe;
     }
 
     @Override
     public void kriechen() {
-    this.zurueckgelegteDistanz = zurueckgelegteDistanz+getSpeed();
+        zurueckgelegteDistanz = zurueckgelegteDistanz + getSpeed();
+        System.out.printf("Gehäuseschnecke %s ist bei %f mm\n", getName(), getZurueckgelegteDistanz());
     }
-
-    public String toString() {
-        return "" + getRasse() +" "+ getName()+ " hat bereits "+zurueckgelegteDistanz+ " zurückgelegt";
-    }
-
-    public float getZurueckgelegteDistanz(){
-        return zurueckgelegteDistanz;
-    }
-
-
 }
 
 

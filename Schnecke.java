@@ -1,24 +1,19 @@
 public abstract class Schnecke {
 
-    // Instantzvariablen
+    // Instanzvariablen
     private String name;
-    private String rasse;
     private float speed;
-    //Klassenvariable
-    protected float zurueckgelegteDistanz;
+
+    //Klassenvariable??
+    protected float zurueckgelegteDistanz = 0;
 
     // Konstruktor
-    public Schnecke(String name, String rasse, float speed) {
+    public Schnecke(String name, float speed) {
         this.name = name;
-        this.rasse = rasse;
-        this.speed = speed;// Speed wird bei der Instantzierung eingegeben.
-        this.zurueckgelegteDistanz = 0;
+        this.speed = speed;
     }
 
     //Instanz-Methoden was jedes Objekt kann.
-    public String toString() {
-        return rasse + " " + name + "ist mit" + speed +"mm/s unterwegs";
-    }
 
     public String getName() {
         return name;
@@ -28,13 +23,19 @@ public abstract class Schnecke {
         return speed;
     }
 
-    public String getRasse() {
-        return rasse;
-    }
-
     public float getZurueckgelegteDistanz() {
         return zurueckgelegteDistanz;
     }
+
+    @Override
+    public String toString() {
+        return "'" +
+                 name + '\'' +
+                " mit der Geschwindigkeit " + speed +
+                "mm/s. Die Schnecke hat " + zurueckgelegteDistanz +
+                "mm zurückgelegt!"+'}';
+    }
+
     // + Abstrakte Instanz Methode daher nicht ausimplementiert.
     public abstract void kriechen();
 
