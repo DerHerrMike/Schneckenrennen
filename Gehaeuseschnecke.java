@@ -19,10 +19,20 @@ public class Gehaeuseschnecke extends Schnecke {
 
     @Override
     public void kriechen() {
-        zurueckgelegteDistanz = zurueckgelegteDistanz + getSpeed();
-        System.out.printf("Gehäuseschnecke %s ist bei %f mm\n", getName(), getZurueckgelegteDistanz());
+        zurueckgelegteDistanz += getSpeed();
+        System.out.printf("Gehäuseschnecke %s ist bei %.3f mm\n", getName(), getZurueckgelegteDistanz());
     }
+
+    @Override
+    public String toString() {
+        return "Gehäuseschnecke '" + this.name + '\'' +
+                " mit der Geschwindigkeit " + this.speed + "mm/s. Die Schnecke hat " + zurueckgelegteDistanz +
+                "mm zurückgelegt!"+'}';
+    }
+
 }
+
+
 
 
 

@@ -1,11 +1,11 @@
 public abstract class Schnecke {
 
     // Instanzvariablen
-    private String name;
-    private float speed;
+    String name;
+    float speed;
 
     //Klassenvariable??
-    protected float zurueckgelegteDistanz = 0;
+    protected float zurueckgelegteDistanz = 0.3f;
 
     // Konstruktor
     public Schnecke(String name, float speed) {
@@ -27,12 +27,10 @@ public abstract class Schnecke {
         return zurueckgelegteDistanz;
     }
 
-    @Override
+
     public String toString() {
-        return "'" +
-                 name + '\'' +
-                " mit der Geschwindigkeit " + speed +
-                "mm/s. Die Schnecke hat " + zurueckgelegteDistanz +
+        return "'" + name + '\'' +
+                " mit der Geschwindigkeit " + speed + "mm/s. Die Schnecke hat " + zurueckgelegteDistanz +
                 "mm zurückgelegt!"+'}';
     }
 

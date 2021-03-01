@@ -22,11 +22,9 @@ public class Rennen {
     public void addSchnecken() {
 
         System.out.println("Wie viele Nacktschnecken sollen teilnehmen?");
-        int anzahlNacktschnecken = scanner.nextInt();
-        addNacktschnecken(anzahlNacktschnecken);
+        addNacktschnecken(scanner.nextInt());
         System.out.println("Wie viele Gehäuseschnecken sollen teilnehmen?");
-        int anzahlGehaeuseschnecken = scanner.nextInt();
-        addGehaueseschnecken(anzahlGehaeuseschnecken);
+        addGehaueseschnecken(scanner.nextInt());
     }
 
     private void addNacktschnecken(int anzahl) {
@@ -61,7 +59,7 @@ public class Rennen {
             try {
                 return scanner.nextFloat();
             } catch (InputMismatchException e) {
-                System.out.println("Falsche Eingabe! Bitte wiederholen:");
+                System.out.println("Falsche Eingabe! Bitte Integer oder Float eingeben:");
                 scanner.nextLine();
             }
         }
@@ -71,17 +69,14 @@ public class Rennen {
     public void rennen() {
         boolean gewonnen = false;
         while (!gewonnen) {
-
             for (Schnecke schnecke : teilnehmer) {
                 schnecke.kriechen();
-                float zurueckgelegteDistanz = schnecke.getZurueckgelegteDistanz();
-                if (zurueckgelegteDistanz >= distanz) {
+                if (schnecke.getZurueckgelegteDistanz() >= distanz) {
                     gewonnen = true;
                     System.out.println("Gewinner " + schnecke);
                     break;
                 }
             }
-
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -92,10 +87,9 @@ public class Rennen {
 
     public static void main(String[] args) {
 
-        System.out.println("Distanz des Rennens in mm festlegen: ");
         Scanner scanner1 = new Scanner(System.in);
-        distanz = scanner1.nextFloat();
-        Rennen rennen = new Rennen(distanz);
+        System.out.println("Distanz des Rennens in mm festlegen: ");
+        Rennen rennen = new Rennen(scanner1.nextFloat());
         rennen.addSchnecken();
         rennen.rennen();
     }
