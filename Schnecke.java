@@ -5,7 +5,7 @@ public abstract class Schnecke {
     float speed;
 
     //Klassenvariable??
-    protected float zurueckgelegteDistanz = 0.3f;
+    protected float zurueckgelegteDistanz = 0.0f;
 
     // Konstruktor
     public Schnecke(String name, float speed) {
