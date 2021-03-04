@@ -35,8 +35,8 @@ public class Gehaeuseschnecke extends Schnecke {
     @Override
     public String toString() {
         return "ist die "+ this.gehaeuseFarbe + "e Gehäuseschnecke '" + this.name +
-                " mit der Geschwindigkeit " + this.speed + "mm/s. Die Schnecke hat " + zurueckgelegteDistanz +
-                "mm zurückgelegt!";
+                "' mit der Geschwindigkeit " + this.speed + "mm/s. Die Schnecke hat " + zurueckgelegteDistanz +
+                " Millimeter zurückgelegt!";
     }
 
 }

@@ -19,8 +19,8 @@ public class Nacktschnecke extends Schnecke {
 
     @Override
     public String toString() {
-        return "Nacktschnecke '" + this.name + '\'' +
-                " mit der Geschwindigkeit " + this.speed + " mm/s. Die Schnecke hat " + zurueckgelegteDistanz +
+        return "Nacktschnecke '" + this.name +
+                "' mit der Geschwindigkeit " + this.speed + " mm/s. Die Schnecke hat " + zurueckgelegteDistanz +
                 " Millimeter zurückgelegt!";
     }
 

@@ -1,5 +1,6 @@
 
 import java.util.*;
+import java.util.List;
 
 
 public class Rennen {
@@ -7,8 +8,6 @@ public class Rennen {
     private static float distanz;
 
     private final List<Schnecke> teilnehmer = new ArrayList<>();
-
-    private final List<Schnecke> gewinner = new ArrayList<>();
 
     Scanner scanner = new Scanner(System.in);
 
@@ -53,8 +52,8 @@ public class Rennen {
     }
 
     private float readSpeed() {
-        boolean success = false;
-        while (!success) {
+
+        while (true) {
             try {
                 return scanner.nextFloat();
             } catch (InputMismatchException e) {
@@ -62,34 +61,40 @@ public class Rennen {
                 scanner.nextLine();
             }
         }
-        return 0.0f;
     }
 
     public void rennen() {
+
         System.out.println("**************************************");
         System.out.println();
-        System.out.println("Das Rennen über "+distanz+" Millimeter startet jetzt!");
+        System.out.println("Das Rennen über " + distanz + " Millimeter startet jetzt!");
         System.out.println();
+
         try {
             Thread.sleep(1500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        int counter = 0;
+
         boolean gewonnen = false;
         while (!gewonnen) {
             for (Schnecke schnecke : teilnehmer) {
                 schnecke.kriechen();
             }
+            System.out.println();
+            int lauf = 0;
+            Schnecke leader = teilnehmer.get(lauf);
+
             for (Schnecke schnecke : teilnehmer) {
-                if (schnecke.getZurueckgelegteDistanz() >= distanz) {
-                    gewonnen = true;
-                    counter++;
-                    gewinner.add(schnecke);
-                    if (counter > 1) {
-                        vergleichGewinnerDistanzen();
-                    }
+                if (leader.getZurueckgelegteDistanz() < schnecke.getZurueckgelegteDistanz()) {
+                    leader = schnecke;
                 }
+                lauf++;
+            }
+
+            if (leader.getZurueckgelegteDistanz() >= distanz) {
+                gewonnen = true;
+                findeGewinnerDistanz(leader);
             }
 
             try {
@@ -100,23 +105,15 @@ public class Rennen {
         }
     }
 
-    public void vergleichGewinnerDistanzen() {
-        int x = gewinner.size();
-        if (gewinner.size() <= 3) {
-            if (gewinner.get(0).getZurueckgelegteDistanz() < gewinner.get(1).getZurueckgelegteDistanz()) {
-                System.out.println("Gewinner " + gewinner.get(1));
-            } else {
-                System.out.println("Gewinner " + gewinner.get(0));
-            }
-        } else {
-            System.out.println("Mehr als zwei Gewinner!");
-        }
+    public void findeGewinnerDistanz(Schnecke leader) {
+
+        System.out.println("Gewinner " + leader);
     }
 
     public static void main(String[] args) {
 
         Scanner scanner1 = new Scanner(System.in);
-        System.out.println("Distanz des Rennens in mm festlegen: ");
+        System.out.println("Bitte die Distanz des Rennens in mm festlegen: ");
         Rennen rennen = new Rennen(scanner1.nextFloat());
         rennen.addSchnecken();
         rennen.rennen();
